@@ -7,7 +7,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
 }
+
+.ant-menu-item:hover, .ant-menu-item-selected {
+  background-color: transparent !important;
+}
+
+.ant-menu-item:after {
+  display:block !important;
+  content: '' !important;
+  border-bottom: solid 3px white !important;
+  transform: scaleX(0);
+  transition: transform 750ms ease-in-out !important;
+}
+.ant-menu-item-selected:after { transform: scaleX(2.15); }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

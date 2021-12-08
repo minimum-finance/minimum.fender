@@ -1,1 +1,1 @@
-import getAcceptedTokens from './getAcceptedTokens';
+import getVaultsData from "./getVaultsData";

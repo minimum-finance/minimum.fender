@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const VaultsList = ({ vaults }) => {
+const VaultsList = () => {
+
+  const vaults = useSelector((state) => state.vaultsData.vaults);
+
   return (
     <>
       <div>list</div>

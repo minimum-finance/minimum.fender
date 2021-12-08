@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import VaultReducer from "./vaultReducer";
 
 const reducers = combineReducers({
-  vaults: VaultReducer,
+  vaultsData: VaultReducer,
 });
 
 export default reducers;

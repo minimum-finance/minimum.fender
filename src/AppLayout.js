@@ -3,7 +3,7 @@ import logo from './logos/minlogo-white.png';
 import styled from 'styled-components';
 import { RocketOutlined, BankOutlined, ExportOutlined } from '@ant-design/icons';
 import { Routes, Route, Link } from 'react-router-dom';
-import Vaults from './Vaults';
+import Vaults from './Vaults/VaultsList';
 import { InAppLink } from './utils';
 import React from 'react';
 
@@ -67,9 +67,11 @@ const AppLayout = () => {
           <Breadcrumb.Item>minimum.finance</Breadcrumb.Item>
           <Breadcrumb.Item>Vaults</Breadcrumb.Item>
         </Breadcrumb>
-        <Routes>
-          <Route exact path="/vaults" element={<Vaults />} />
-        </Routes>
+        <SubContent>
+          <Routes>
+            <Route exact path="/vaults" element={<Vaults vaults={[1, 2]}/>} />
+          </Routes>
+        </SubContent>
       </PageContent>
       <Footer style={{ textAlign: 'center' }}>minimum.finance ©2021 Created by Ant UED</Footer>
     </Layout>

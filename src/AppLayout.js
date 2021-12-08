@@ -1,6 +1,11 @@
 import { Layout, Menu, Breadcrumb } from 'antd';
-import logo from './logowhite.png';
+import logo from './logos/minlogo-white.png';
 import styled from 'styled-components';
+import { RocketOutlined, BankOutlined, ExportOutlined } from '@ant-design/icons';
+import { Routes, Route, Link } from 'react-router-dom';
+import Vaults from './Vaults';
+import { InAppLink } from './utils';
+import React from 'react';
 
 const { Header, Content, Footer } = Layout;
 
@@ -11,16 +16,17 @@ const LayoutHeader = styled(Header)`
   width: 100%;
   padding-top: 2px;
   height: 70px;
+  background: linear-gradient(to top, #2E323B 0%, #383E4A 100%);
 `;
 
 const LogoContainer = styled.div`
-  width: 300px;
+  width: 120px;
   margin-right: 15px;
 `;
 
 const HeaderMenu = styled(Menu)`
   width: 100%;
-`
+`;
 
 const PageContent = styled(Content)`
   padding: 0px 50px;
@@ -32,30 +38,42 @@ const SubContent = styled.div`
   min-height: 320px;
 `;
 
-const AppLayout = () => (
-  <Layout>
-    <LayoutHeader>
-      <LogoContainer>
-        <img src={logo} style={{maxWidth: '100%'}} alt="minimum.finance" />
-      </LogoContainer>
-      <HeaderMenu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </HeaderMenu>
-    </LayoutHeader>
-    <PageContent>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>minimum.finance</Breadcrumb.Item>
-        <Breadcrumb.Item>Vaults</Breadcrumb.Item>
-        <Breadcrumb.Item>Dai</Breadcrumb.Item>
-      </Breadcrumb>
-      <SubContent className="site-layout-background">
-        Content
-      </SubContent>
-    </PageContent>
-    <Footer style={{ textAlign: 'center' }}>minimum.finance ©2021 Created by Ant UED</Footer>
-  </Layout>
-)
+const AppLayout = () => {
+
+  return (
+    <Layout>
+      <LayoutHeader>
+        <LogoContainer>
+          <img src={logo} style={{maxWidth: '100%'}} alt="minimum.finance" />
+        </LogoContainer>
+        <HeaderMenu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+          <Menu.Item key="1" onSelect={() => InAppLink("vaults")}>
+            <Link to="vaults" />
+            <BankOutlined />{' '}
+            Vaults
+          </Menu.Item>
+          <Menu.Item key="2">
+            <RocketOutlined />{' '}
+            Stats
+          </Menu.Item>
+          <Menu.Item key="3">
+            <ExportOutlined />{' '}
+            Docs
+          </Menu.Item>
+        </HeaderMenu>
+      </LayoutHeader>
+      <PageContent>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>minimum.finance</Breadcrumb.Item>
+          <Breadcrumb.Item>Vaults</Breadcrumb.Item>
+        </Breadcrumb>
+        <Routes>
+          <Route exact path="/vaults" element={<Vaults />} />
+        </Routes>
+      </PageContent>
+      <Footer style={{ textAlign: 'center' }}>minimum.finance ©2021 Created by Ant UED</Footer>
+    </Layout>
+    )
+  };
 
 export default AppLayout;

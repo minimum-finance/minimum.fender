@@ -7,7 +7,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
+  background: linear-gradient(to top right, #C96571D4 0%, #4e7d97 70%);
+}
+
+.ant-layout, .ant-layout-footer {
+  background-color: transparent;
+}
+
+.ant-menu {
+  background: linear-gradient(to top, #2E323B 0%, #383E4A 100%) !important;
 }
 
 .ant-menu-item:hover, .ant-menu-item-selected {
@@ -21,7 +29,7 @@ body {
   transform: scaleX(0);
   transition: transform 750ms ease-in-out !important;
 }
-.ant-menu-item-selected:after { transform: scaleX(2.15); }
+.ant-menu-item-selected:after { transform: scaleX(1.15); }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

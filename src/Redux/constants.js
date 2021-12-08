@@ -1,0 +1,3 @@
+export const ACTION_TYPES = {
+  SET_VAULTS_DATA: "SET_VAULTS_DATA",
+};

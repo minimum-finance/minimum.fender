@@ -3,24 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import AppLayout from "./AppLayout";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import Store from "./Redux/Store";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore } from "redux";
-import VaultReducer from "./Reducers";
 
-const store = createStore(VaultReducer);
-
-const render = () =>
-  ReactDOM.render(
-    <React.StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={Store}>
       <Router>
         <AppLayout />
       </Router>
-    </React.StrictMode>,
-    document.getElementById("root")
-  );
-
-render();
-store.subscribe(render);
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

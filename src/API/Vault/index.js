@@ -1,1 +1,1 @@
-import getVaultsData from "./getVaultsData";
+export { default as getVaultsData } from "./getVaultsData";

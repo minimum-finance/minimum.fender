@@ -9,7 +9,8 @@ import {
 import { Routes, Route, Link } from "react-router-dom";
 import Vaults from "./Vaults/VaultsList";
 import { InAppLink } from "./utils";
-import React from "react";
+import React, { useEffect } from "react";
+import { getVaultsData } from "./API/Vault";
 
 const { Header, Content, Footer } = Layout;
 
@@ -43,6 +44,8 @@ const SubContent = styled.div`
 `;
 
 const AppLayout = () => {
+  useEffect(() => {}, []);
+
   return (
     <Layout>
       <LayoutHeader>

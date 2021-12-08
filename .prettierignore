@@ -3,3 +3,6 @@ cache
 artifacts
 node_modules
 package**
+build
+.netlify
+public

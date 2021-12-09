@@ -7,27 +7,27 @@ import VaultData from "../Data/VaultData.json";
 const VaultsList = () => {
   const dispatch = useDispatch();
   const vaults = useSelector((state) => state.vaultsData.vaults);
+  const provider = useSelector((state) => state.web3Data.provider);
 
   const fetchVaults = async () => {
-    //const vaultData = await getVaultsData(VaultData.vaults);
-
-    //dispatch(setVaults(vaultData));
+    const vaultData = await getVaultsData(VaultData.vaults, provider);
+    dispatch(setVaults(vaultData));
   }
 
   useEffect(
     () => {
-      fetchVaults();
+      if (provider) {
+        fetchVaults();
+      }
     },
-    []
+    [provider]
   );
-
-  console.log(vaults);
 
   return (
     <>
       <div>list</div>
-      {vaults.map((vault) => (
-        <div>vault {vault}</div>
+      {vaults.map((vault, i) => (
+        <div>vault {i}</div>
       ))}
     </>
   );

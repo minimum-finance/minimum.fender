@@ -3,6 +3,7 @@ import VaultABI from "../../artifacts/contracts/Vaults/MinimumVault.sol/MinimumV
 
 const getVaultData = async (vaultAddress, provider) => {
   const vault = new ethers.Contract(vaultAddress, VaultABI.abi, provider);
+
   const name = await vault.name();
   const symbol = await vault.symbol();
   const want = await vault.want();

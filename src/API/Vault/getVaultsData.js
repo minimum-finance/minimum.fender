@@ -1,8 +1,9 @@
 import getVaultData from "./getVaultData";
 
 const getVaultsData = async (vaults, provider) => {
-  vaults.map((vault) => getVaultData(vault, provider));
-  return vaults;
+  const vaultsData = await Promise.all(vaults.map(async (vault) => await getVaultData(vault, provider)));
+
+  return vaultsData;
 };
 
 export default getVaultsData;

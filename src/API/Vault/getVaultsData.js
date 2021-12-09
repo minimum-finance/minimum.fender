@@ -1,7 +1,7 @@
 import getVaultData from "./getVaultData";
 
-const getVaultsData = async (vaults) => {
-  vaults.map(getVaultData);
+const getVaultsData = async (vaults, provider) => {
+  vaults.map((vault) => getVaultData(vault, provider));
   return vaults;
 };
 

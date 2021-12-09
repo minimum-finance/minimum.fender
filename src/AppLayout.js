@@ -1,4 +1,4 @@
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Spin } from "antd";
 import logo from "./logos/minlogo-white.png";
 import styled from "styled-components";
 import {
@@ -8,9 +8,10 @@ import {
 } from "@ant-design/icons";
 import { Routes, Route, Link } from "react-router-dom";
 import Vaults from "./Vaults/VaultsList";
-import { InAppLink } from "./utils";
-import React, { useEffect } from "react";
-import { getVaultsData } from "./API/Vault";
+import React, { useState, useEffect } from "react";
+import { connectToWeb3 } from "./utils";
+import { setProvider, setNetwork, setAddress } from "./Redux/Actions/vaultActions";
+import { useDispatch } from "react-redux";
 
 const { Header, Content, Footer } = Layout;
 
@@ -44,7 +45,24 @@ const SubContent = styled.div`
 `;
 
 const AppLayout = () => {
-  useEffect(() => {}, []);
+
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+
+  const connectToWallet = () => {
+    connectToWeb3((addrs, newProvider, network) => {
+        setLoading(false);
+        dispatch(setProvider(newProvider));
+        dispatch(setNetwork(network));
+        dispatch(setAddress(addrs));
+    });
+  };
+
+  useEffect(() => connectToWallet(), []);
+
+  if (loading) return (
+    <Spin size="large" style={{position: 'absolute', margin: 'auto', left: 0, right: 0, top: '50%'}} />
+  );
 
   return (
     <Layout>
@@ -53,7 +71,7 @@ const AppLayout = () => {
           <img src={logo} style={{ maxWidth: "100%" }} alt="minimum.finance" />
         </LogoContainer>
         <HeaderMenu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" onSelect={() => InAppLink("vaults")}>
+          <Menu.Item key="1" >
             <Link to="vaults" />
             <BankOutlined /> Vaults
           </Menu.Item>

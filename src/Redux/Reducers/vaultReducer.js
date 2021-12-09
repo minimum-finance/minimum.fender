@@ -4,10 +4,10 @@ const initialState = {
   vaults: [],
 };
 
-const vaultReducer = (state = initialState, action) => {
-  switch (action.type) {
+const vaultReducer = (state = initialState, { type, payload}) => {
+  switch (type) {
     case ACTION_TYPES.SET_VAULTS_DATA:
-      return state;
+      return { ...state, vaults: payload };
     default:
       return state;
   }

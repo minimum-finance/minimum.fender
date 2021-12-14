@@ -4,7 +4,7 @@ const initialState = {
   vaults: [],
 };
 
-const vaultReducer = (state = initialState, { type, payload}) => {
+const vaultReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ACTION_TYPES.SET_VAULTS_DATA:
       return { ...state, vaults: payload };

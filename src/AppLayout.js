@@ -10,7 +10,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import Vaults from "./Vaults/VaultsList";
 import React, { useState, useEffect } from "react";
 import { connectToWeb3 } from "./utils";
-import { setProvider, setNetwork, setAddress } from "./Redux/Actions/vaultActions";
+import {
+  setProvider,
+  setNetwork,
+  setAddress,
+} from "./Redux/Actions/vaultActions";
 import { useDispatch } from "react-redux";
 
 const { Header, Content, Footer } = Layout;
@@ -45,24 +49,33 @@ const SubContent = styled.div`
 `;
 
 const AppLayout = () => {
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
   const connectToWallet = () => {
     connectToWeb3((addrs, newProvider, network) => {
-        setLoading(false);
-        dispatch(setProvider(newProvider));
-        dispatch(setNetwork(network));
-        dispatch(setAddress(addrs));
+      setLoading(false);
+      dispatch(setProvider(newProvider));
+      dispatch(setNetwork(network));
+      dispatch(setAddress(addrs));
     });
   };
 
   useEffect(() => connectToWallet(), []);
 
-  if (loading) return (
-    <Spin size="large" style={{position: 'absolute', margin: 'auto', left: 0, right: 0, top: '50%'}} />
-  );
+  if (loading)
+    return (
+      <Spin
+        size="large"
+        style={{
+          position: "absolute",
+          margin: "auto",
+          left: 0,
+          right: 0,
+          top: "50%",
+        }}
+      />
+    );
 
   return (
     <Layout>
@@ -71,7 +84,7 @@ const AppLayout = () => {
           <img src={logo} style={{ maxWidth: "100%" }} alt="minimum.finance" />
         </LogoContainer>
         <HeaderMenu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" >
+          <Menu.Item key="1">
             <Link to="vaults" />
             <BankOutlined /> Vaults
           </Menu.Item>

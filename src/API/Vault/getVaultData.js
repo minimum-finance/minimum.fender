@@ -12,6 +12,7 @@ const getVaultData = async (vaultAddress, provider) => {
   const strat = await vault.strategy();
 
   return {
+    address: vaultAddress,
     name: name,
     symbol: symbol,
     want: want,
